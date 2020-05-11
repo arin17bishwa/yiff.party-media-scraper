@@ -44,7 +44,6 @@ def extracting_basename(tile):#complete
         try:
             base = tile.find('div', class_='card-content np-rd')#card-title grey-text text-darken-4
             base_name=str((base.find('small',class_="post-time")).text)
-            print('\nFINDING MEDIA ON ',base_name,'\n')
             return base_name
         except Exception as e:
             print('extracting basename error:',e)
