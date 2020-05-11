@@ -26,7 +26,7 @@ def total_page_count(soup):
         total_page=1
     return total_page
 
-def naming(base_name,names_used):#complete
+def naming(base_name,names_used):
     if (base_name not in names_used) or (names_used[base_name]==0):
         names_used[base_name]=1
         return base_name
@@ -34,15 +34,14 @@ def naming(base_name,names_used):#complete
     names_used[base_name]+=1
     return new_name
 
-def extracting_basename(tile):#complete
+def extracting_basename(tile):
     try:
         base=tile.find('div',class_='card-content')
         base_name=str((base.find('span',class_="grey-text post-time")).text).strip()
-        #print('BASENAME: ',base_name)
         return base_name
     except Exception as e:
         try:
-            base = tile.find('div', class_='card-content np-rd')#card-title grey-text text-darken-4
+            base = tile.find('div', class_='card-content np-rd')
             base_name=str((base.find('small',class_="post-time")).text)
             return base_name
         except Exception as e:
@@ -51,15 +50,15 @@ def extracting_basename(tile):#complete
             print(tile)
             print()
 
-def calculate_size(link):#complete
+def calculate_size(link):
     global total_size_downloaded
     siz = requests.head(link)
-    siz = float(siz.headers['content-length']) / 1000#1024
-    size = (siz / 1000)#1024)
+    siz = float(siz.headers['content-length']) / 1000
+    size = (siz / 1000)
     total_size_downloaded+=size
     return size
 
-def sleepy_time():#complete
+def sleepy_time():
     sleep_time = randint(min_time,max_time)
     print('\nSLEEPING FOR :', sleep_time, 'SECS\n')
     time.sleep(sleep_time)
@@ -117,7 +116,7 @@ def func(site):
                     flag1 = 0
                     # i+=1
                     temp = (qw.get('href'))
-                    temp_name = str(temp).split('/')[-1]  # naming(tile,names_used)
+                    temp_name = str(temp).split('/')[-1] 
                     link = 'https://data.yiff.party' + temp
                     if len(temp_name) > 5 and 'https_' == temp_name[:6]:
                         print('SKIPPED:', temp_name, '\n', link)
@@ -125,8 +124,6 @@ def func(site):
                         continue
 
                     extension = str(temp_name.split('.')[-1])  # FINDING EXTENSION OF THE FILE
-                    #name = naming(base_name, names_used) + '.' + extension  # final name of file
-
                     t = ' '.join(qw.img.get('class'))
                     size = calculate_size(link)
                     if t == checker and size>min_size_limit:
@@ -177,12 +174,10 @@ def func(site):
                     continue
 
                 extension = str(temp_name.split('.')[-1])
-                #name = str(naming(base_name, names_used) + '.' + extension)
                 size = calculate_size(link)
                 if size>min_size_limit:
                     flag2 = download(temp_name, link, size, base_name, extension, names_used)
             except Exception as e:
-                # print(1.2,e,'\n',tile)
                 c += 1
                 continue
             if flag2 == 1:
