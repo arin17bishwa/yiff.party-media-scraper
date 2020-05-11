@@ -204,7 +204,7 @@ c=1
 base_dir=os.path.join(os.path.expanduser('~'),'Downloads','YIFF')
 base_site=input('ENTER THE URL: ')
 page = requests.get(base_site).text
-soup = bs(page, 'lxml')
+soup = bs(page, 'html.parser')
 dir_name=soup.find('span',class_="yp-info-name").text#extracts the name of the  artist
 print('FOLDER NAME: ',dir_name)
 current_page,total_page=1,total_page_count(soup)
