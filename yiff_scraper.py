@@ -37,7 +37,7 @@ def naming(base_name,names_used):#complete
 def extracting_basename(tile):#complete
     try:
         base=tile.find('div',class_='card-content')
-        base_name=str((base.find('span',class_="grey-text post-time")).text)
+        base_name=str((base.find('span',class_="grey-text post-time")).text).strip()
         #print('BASENAME: ',base_name)
         return base_name
     except Exception as e:
@@ -204,7 +204,7 @@ base_dir=os.path.join(os.path.expanduser('~'),'Downloads','YIFF')
 base_site=input('ENTER THE URL: ')
 page = requests.get(base_site).text
 soup = bs(page, 'html.parser')
-dir_name=soup.find('span',class_="yp-info-name").text#extracts the name of the  artist
+dir_name=str(soup.find('span',class_="yp-info-name").text).strip()#extracts the name of the  artist
 print('FOLDER NAME: ',dir_name)
 current_page,total_page=1,total_page_count(soup)
 dir_path=os.path.join(base_dir,dir_name)
