@@ -5,7 +5,7 @@ deplicate==1.2.3
 directio==1.2
 HTMLParser==0.0.2
 idna==2.9
-lxml==4.5.0
+lxml==4.6.2
 psutil==5.7.0
 py3-wetransfer==1.0.3
 pyimgur==0.6.0
