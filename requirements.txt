@@ -13,6 +13,6 @@ requests==2.23.0
 requests-toolbelt==0.9.1
 Send2Trash==1.5.0
 soupsieve==2.0
-urllib3==1.25.9
+urllib3==1.26.5
 wetransferpy==0.2.3
 xxhash==1.4.3
